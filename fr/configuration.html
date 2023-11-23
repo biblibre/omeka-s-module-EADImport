@@ -20,7 +20,8 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Recherche" href="search.html" />
-    <link rel="prev" title="Features" href="features.html" /> 
+    <link rel="next" title="Features" href="features.html" />
+    <link rel="prev" title="Introduction" href="index.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -44,11 +45,11 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="features.html">Features</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Configuration</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#new-import-configuration">New import configuration</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="features.html">Features</a></li>
 </ul>
 
         </div>
@@ -81,12 +82,15 @@
 <h2>New import configuration<a class="headerlink" href="#new-import-configuration" title="Lien permanent vers cette rubrique"></a></h2>
 <p>When you launch a new import, once you’ve defined the name and path of the XML file,
 you can check its structure according to the « EAD 2002 » schema and assign its content to a particular site.</p>
+<img alt="_images/EADImport_config-import.png" src="_images/EADImport_config-import.png" />
 <p>On submission of this first form you then define the mappings of the xml nodes found (we’ve specified a node list within the module).
 One or more properties can take the value of the selected node.</p>
-<p>Each tab will represent the value of the « _level_ » attribute of each <cite>&lt;c&gt;</cite> tag.
+<img alt="_images/EADImport_mapping.png" src="_images/EADImport_mapping.png" />
+<p>Each tab will represent the value of the « <cite>level</cite> » attribute of each <cite>&lt;c&gt;</cite> tag.
 You choose the type of resource produced by each tab, with the option of completely ignoring the tab and the resulting resources.</p>
+<img alt="_images/EADImport_mapping-skip-a-tab.png" src="_images/EADImport_mapping-skip-a-tab.png" />
 <p>You also have the option of inheriting properties in child nodes.</p>
-<p>The link between resources is then automatically established by the _dcterms_ _isPartOf_ and _hasPart_ properties.</p>
+<p>The link between resources is then automatically established by the <cite>dcterms:isPartOf</cite> and <cite>dcterms:hasPart</cite> properties.</p>
 </section>
 </section>
 
@@ -94,7 +98,8 @@ You choose the type of resource produced by each tab, with the option of complet
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Pied de page">
-        <a href="features.html" class="btn btn-neutral float-left" title="Features" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Précédent</a>
+        <a href="index.html" class="btn btn-neutral float-left" title="Introduction" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Précédent</a>
+        <a href="features.html" class="btn btn-neutral float-right" title="Features" accesskey="n" rel="next">Suivant <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
