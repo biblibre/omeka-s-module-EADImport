@@ -1,5 +1,5 @@
-Configuration
-=============
+Tutorials
+=========
 
 New import configuration
 ------------------------

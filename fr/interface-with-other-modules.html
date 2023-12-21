@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Configuration &mdash; Documentation EADImport </title>
+  <title>Intéraction avec d’autres modules &mdash; Documentation EADImport </title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -20,8 +20,8 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Recherche" href="search.html" />
-    <link rel="next" title="Features" href="features.html" />
-    <link rel="prev" title="Introduction" href="index.html" /> 
+    <link rel="next" title="Tutoriels" href="tutorials.html" />
+    <link rel="prev" title="Fonctionnalités" href="features.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -43,13 +43,11 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">Contents</span></p>
+              <p class="caption" role="heading"><span class="caption-text">Contenus</span></p>
 <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Configuration</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#new-import-configuration">New import configuration</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="features.html">Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="features.html">Fonctionnalités</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Intéraction avec d’autres modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials.html">Tutoriels</a></li>
 </ul>
 
         </div>
@@ -66,9 +64,9 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">Configuration</li>
+      <li class="breadcrumb-item active">Intéraction avec d’autres modules</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="_sources/configuration.rst.txt" rel="nofollow"> Afficher la source de la page</a>
+            <a href="_sources/interface-with-other-modules.rst.txt" rel="nofollow"> Afficher la source de la page</a>
       </li>
   </ul>
   <hr/>
@@ -76,30 +74,17 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="configuration">
-<h1>Configuration<a class="headerlink" href="#configuration" title="Lien permanent vers cette rubrique"></a></h1>
-<section id="new-import-configuration">
-<h2>New import configuration<a class="headerlink" href="#new-import-configuration" title="Lien permanent vers cette rubrique"></a></h2>
-<p>When you launch a new import, once you’ve defined the name and path of the XML file,
-you can check its structure according to the « EAD 2002 » schema and assign its content to a particular site.</p>
-<img alt="_images/EADImport_config-import.png" src="_images/EADImport_config-import.png" />
-<p>On submission of this first form you then define the mappings of the xml nodes found (we’ve specified a node list within the module).
-One or more properties can take the value of the selected node.</p>
-<img alt="_images/EADImport_mapping.png" src="_images/EADImport_mapping.png" />
-<p>Each tab will represent the value of the « <cite>level</cite> » attribute of each <cite>&lt;c&gt;</cite> tag.
-You choose the type of resource produced by each tab, with the option of completely ignoring the tab and the resulting resources.</p>
-<img alt="_images/EADImport_mapping-skip-a-tab.png" src="_images/EADImport_mapping-skip-a-tab.png" />
-<p>You also have the option of inheriting properties in child nodes.</p>
-<p>The link between resources is then automatically established by the <cite>dcterms:isPartOf</cite> and <cite>dcterms:hasPart</cite> properties.</p>
-</section>
+  <section id="interface-with-other-modules">
+<h1>Intéraction avec d’autres modules<a class="headerlink" href="#interface-with-other-modules" title="Lien permanent vers cette rubrique"></a></h1>
+<p><a class="reference external" href="https://github.com/biblibre/omeka-s-module-ItemSetParty">ItemSetParty</a> est un module qui permet de visualiser une hiérarchie de ressources basée sur les collections définies dans ses paramètres. Les ressources sont liées en utilisant la propriété <cite>dcterms:hasPart</cite>.</p>
 </section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Pied de page">
-        <a href="index.html" class="btn btn-neutral float-left" title="Introduction" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Précédent</a>
-        <a href="features.html" class="btn btn-neutral float-right" title="Features" accesskey="n" rel="next">Suivant <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="features.html" class="btn btn-neutral float-left" title="Fonctionnalités" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Précédent</a>
+        <a href="tutorials.html" class="btn btn-neutral float-right" title="Tutoriels" accesskey="n" rel="next">Suivant <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

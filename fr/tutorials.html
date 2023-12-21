@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Introduction &mdash; Documentation EADImport </title>
+  <title>Tutoriels &mdash; Documentation EADImport </title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -20,7 +20,7 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Recherche" href="search.html" />
-    <link rel="next" title="Fonctionnalités" href="features.html" /> 
+    <link rel="prev" title="Intéraction avec d’autres modules" href="interface-with-other-modules.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -31,7 +31,7 @@
 
           
           
-          <a href="#" class="icon icon-home">
+          <a href="index.html" class="icon icon-home">
             EADImport
           </a>
 <div role="search">
@@ -43,10 +43,13 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contenus</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="features.html">Fonctionnalités</a></li>
 <li class="toctree-l1"><a class="reference internal" href="interface-with-other-modules.html">Intéraction avec d’autres modules</a></li>
-<li class="toctree-l1"><a class="reference internal" href="tutorials.html">Tutoriels</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Tutoriels</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#new-import-configuration">Configuration d’un nouvel import</a></li>
+</ul>
+</li>
 </ul>
 
         </div>
@@ -55,17 +58,17 @@
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="#">EADImport</a>
+          <a href="index.html">EADImport</a>
       </nav>
 
       <div class="wy-nav-content">
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="#" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">Introduction</li>
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Tutoriels</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="_sources/index.rst.txt" rel="nofollow"> Afficher la source de la page</a>
+            <a href="_sources/tutorials.rst.txt" rel="nofollow"> Afficher la source de la page</a>
       </li>
   </ul>
   <hr/>
@@ -73,30 +76,19 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="introduction">
-<h1>Introduction<a class="headerlink" href="#introduction" title="Lien permanent vers cette rubrique"></a></h1>
-<section id="how-does-it-work">
-<h2>Comment cela fonctionne ?<a class="headerlink" href="#how-does-it-work" title="Lien permanent vers cette rubrique"></a></h2>
-<p>Ce module Omeka S permet d’importer des ressources à partir d’un fichier xml formaté en « ead ».</p>
-</section>
-<section id="where-is-the-configuration">
-<h2>Où elle la configuration ?<a class="headerlink" href="#where-is-the-configuration" title="Lien permanent vers cette rubrique"></a></h2>
-<p>À proprement parler, aucune configuration n’est requise pour le module, qui est mappé directement lors d’une nouvelle importation. Pour votre information,  le fichier soumis sera analysé pour ne traiter que les balises <cite>&lt;c&gt;</cite> avec un attribut  « niveau ». Chaque onglet représentera un « niveau » différent et  » « les nœuds apparaissant seront les mêmes » « les nœuds apparaissant seront ceux trouvés dans la liste codée en dur dans le module (<a class="reference external" href="https://github.com/biblibre/omeka-s-module-EADImport/blob/master/src/NodeXpaths/EAD2002Xpath.php">EAD-2002-Paths</a>). Les liens « parent-enfant » sont établis automatiquement et sont directement liés aux propriétés dcterms:hasPart et dcterms:isPartOf</p>
-<div class="toctree-wrapper compound">
-<p class="caption" role="heading"><span class="caption-text">Contenus</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="features.html">Fonctionnalités</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="features.html#past-imports">Imports passés</a></li>
-<li class="toctree-l2"><a class="reference internal" href="features.html#mapping-models">Modèle de correspondances</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="interface-with-other-modules.html">Intéraction avec d’autres modules</a></li>
-<li class="toctree-l1"><a class="reference internal" href="tutorials.html">Tutoriels</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="tutorials.html#new-import-configuration">Configuration d’un nouvel import</a></li>
-</ul>
-</li>
-</ul>
-</div>
+  <section id="tutorials">
+<h1>Tutoriels<a class="headerlink" href="#tutorials" title="Lien permanent vers cette rubrique"></a></h1>
+<section id="new-import-configuration">
+<h2>Configuration d’un nouvel import<a class="headerlink" href="#new-import-configuration" title="Lien permanent vers cette rubrique"></a></h2>
+<p>Lorsque vous lancez une nouvelle importation, une fois que vous avez défini le nom et le chemin d’accès du du fichier XML, vous pouvez vérifier sa structure en fonction de la norme « « EAD 2002 » » schéma et affecter son contenu à un site particulier.</p>
+<img alt="_images/EADImport_config-import.png" src="_images/EADImport_config-import.png" />
+<p>Lors de la soumission de ce premier formulaire, vous définissez les mappings des nœuds xml xml trouvés (nous avons spécifié une liste de nœuds dans le module). Une ou plusieurs propriétés peuvent prendre la valeur du nœud sélectionné.</p>
+<img alt="_images/EADImport_mapping.png" src="_images/EADImport_mapping.png" />
+<p>Each tab will represent the value of the « <cite>level</cite> » attribute of each <cite>&lt;c&gt;</cite> tag.
+You choose the type of resource produced by each tab, with the option of completely ignoring the tab and the resulting resources.</p>
+<img alt="_images/EADImport_mapping-skip-a-tab.png" src="_images/EADImport_mapping-skip-a-tab.png" />
+<p>Chaque onglet représentera la valeur de l’attribut <code class="docutils literal notranslate"><span class="pre">niveau</span></code> de chaque <cite>&lt;c&gt;</cite>. Vous choisissez le type de ressource produit par chaque onglet, avec la  » « possibilité d’ignorer complètement l’onglet et les ressources qui en résultent d’ignorer complètement l’onglet et les ressources qui en résultent.</p>
+<p>Le lien entre les ressources est alors automatiquement établi par les propriétés <cite>dcterms:isPartOf</cite> et <cite>dcterms:hasPart</cite>.</p>
 </section>
 </section>
 
@@ -104,7 +96,7 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Pied de page">
-        <a href="features.html" class="btn btn-neutral float-right" title="Fonctionnalités" accesskey="n" rel="next">Suivant <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="interface-with-other-modules.html" class="btn btn-neutral float-left" title="Intéraction avec d’autres modules" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Précédent</a>
     </div>
 
   <hr/>
