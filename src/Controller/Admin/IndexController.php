@@ -48,6 +48,14 @@ class IndexController extends AbstractActionController
             $request->getPost()->toArray(),
             $request->getFiles()->toArray()
         );
+
+        $form = $this->getForm(LoadForm::class);
+        $form->setData($post);
+        if (!$form->isValid()) {
+            $this->messenger()->addFormErrors($form);
+            return $this->redirect()->toRoute('admin/eadimport');
+        }
+
         $this->moveToTemp($post['source']['tmp_name']);
         $xmlFilePath = $this->getTempPath();
 
