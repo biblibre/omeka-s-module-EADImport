@@ -56,22 +56,24 @@ class IndexController extends AbstractActionController
             return $this->redirect()->toRoute('admin/eadimport');
         }
 
-        $this->moveToTemp($post['source']['tmp_name']);
+        $data = $form->getData();
+
+        $this->moveToTemp($data['source']['tmp_name']);
         $xmlFilePath = $this->getTempPath();
         $xmlFileObject = $this->xmlToObject($xmlFilePath);
         $options['xml_schema_object'] = $xmlFileObject;
 
         $importForm = $this->getForm(MappingForm::class, $options);
-        $importForm->setData($post);
+        $importForm->setData($data);
 
         if (!$importForm->isValid()) {
             $this->messenger()->addFormErrors($importForm);
             return $this->redirect()->toRoute('admin/eadimport');
         }
 
-        $importName = $post['import_name'];
-        $siteId = $post['site_id'];
-        $xmlSchema = $post['schema'];
+        $importName = $data['import_name'];
+        $siteId = $data['site_id'];
+        $xmlSchema = $data['schema'];
         $xmlSchemaObject = $this->xmlToObject($xmlFilePath);
         $options['xml_file_object'] = $xmlSchemaObject;
 
