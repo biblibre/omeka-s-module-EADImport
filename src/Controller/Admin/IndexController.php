@@ -60,22 +60,12 @@ class IndexController extends AbstractActionController
 
         $this->moveToTemp($data['source']['tmp_name']);
         $xmlFilePath = $this->getTempPath();
-        $xmlFileObject = $this->xmlToObject($xmlFilePath);
-        $options['xml_schema_object'] = $xmlFileObject;
 
-        $importForm = $this->getForm(MappingForm::class, $options);
-        $importForm->setData($data);
-
-        if (!$importForm->isValid()) {
-            $this->messenger()->addFormErrors($importForm);
-            return $this->redirect()->toRoute('admin/eadimport');
-        }
+        $importForm = $this->getForm(MappingForm::class);
 
         $importName = $data['import_name'];
         $siteId = $data['site_id'];
         $xmlSchema = $data['schema'];
-        $xmlSchemaObject = $this->xmlToObject($xmlFilePath);
-        $options['xml_file_object'] = $xmlSchemaObject;
 
         if ($xmlSchema !== 'None') {
             $xmlSchemaPath = OMEKA_PATH . '/modules/EADImport/data/schemas/' . $xmlSchema;
@@ -140,14 +130,6 @@ class IndexController extends AbstractActionController
         $this->paginator($response->getTotalResults(), $page);
         $view->setVariable('imports', $response->getContent());
         return $view;
-    }
-
-    protected function xmlToObject($xmlFilePath)
-    {
-        $xmlToString = file_get_contents($xmlFilePath);
-        $xmlToObject = simplexml_load_string($xmlToString);
-
-        return $xmlToObject;
     }
 
     protected function getNodeList($xmlFile)
