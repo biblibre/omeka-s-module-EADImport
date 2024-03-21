@@ -71,7 +71,7 @@ class LoadForm extends Form
                 [
                     'name' => MimeType::class,
                     'options' => [
-                        'mimeType' => ['text/xml'],
+                        'mimeType' => ['text/xml', 'application/xml', 'text/plain'],
                         'messages' => [
                             MimeType::FALSE_TYPE => 'File type must be XML', // @translate
                         ],
