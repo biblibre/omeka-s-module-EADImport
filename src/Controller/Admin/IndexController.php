@@ -58,12 +58,6 @@ class IndexController extends AbstractActionController
 
         $this->moveToTemp($post['source']['tmp_name']);
         $xmlFilePath = $this->getTempPath();
-
-        if ($post['source']['type'] !== 'text/xml') {
-            $this->messenger()->addError(sprintf("%s is not a xml file", $post['source']['name'])); // @translate
-            return $this->redirect()->toRoute('admin/eadimport');
-        }
-
         $xmlFileObject = $this->xmlToObject($xmlFilePath);
         $options['xml_schema_object'] = $xmlFileObject;
 
