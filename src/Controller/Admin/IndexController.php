@@ -48,30 +48,24 @@ class IndexController extends AbstractActionController
             $request->getPost()->toArray(),
             $request->getFiles()->toArray()
         );
-        $this->moveToTemp($post['source']['tmp_name']);
+
+        $form = $this->getForm(LoadForm::class);
+        $form->setData($post);
+        if (!$form->isValid()) {
+            $this->messenger()->addFormErrors($form);
+            return $this->redirect()->toRoute('admin/eadimport');
+        }
+
+        $data = $form->getData();
+
+        $this->moveToTemp($data['source']['tmp_name']);
         $xmlFilePath = $this->getTempPath();
 
-        if ($post['source']['type'] !== 'text/xml') {
-            $this->messenger()->addError(sprintf("%s is not a xml file", $post['source']['name'])); // @translate
-            return $this->redirect()->toRoute('admin/eadimport');
-        }
+        $importForm = $this->getForm(MappingForm::class);
 
-        $xmlFileObject = $this->xmlToObject($xmlFilePath);
-        $options['xml_schema_object'] = $xmlFileObject;
-
-        $importForm = $this->getForm(MappingForm::class, $options);
-        $importForm->setData($post);
-
-        if (!$importForm->isValid()) {
-            $this->messenger()->addFormErrors($importForm);
-            return $this->redirect()->toRoute('admin/eadimport');
-        }
-
-        $importName = $post['import_name'];
-        $siteId = $post['site_id'];
-        $xmlSchema = $post['schema'];
-        $xmlSchemaObject = $this->xmlToObject($xmlFilePath);
-        $options['xml_file_object'] = $xmlSchemaObject;
+        $importName = $data['import_name'];
+        $siteId = $data['site_id'];
+        $xmlSchema = $data['schema'];
 
         if ($xmlSchema !== 'None') {
             $xmlSchemaPath = OMEKA_PATH . '/modules/EADImport/data/schemas/' . $xmlSchema;
@@ -136,14 +130,6 @@ class IndexController extends AbstractActionController
         $this->paginator($response->getTotalResults(), $page);
         $view->setVariable('imports', $response->getContent());
         return $view;
-    }
-
-    protected function xmlToObject($xmlFilePath)
-    {
-        $xmlToString = file_get_contents($xmlFilePath);
-        $xmlToObject = simplexml_load_string($xmlToString);
-
-        return $xmlToObject;
     }
 
     protected function getNodeList($xmlFile)

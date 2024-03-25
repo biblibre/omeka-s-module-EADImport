@@ -4,6 +4,7 @@ namespace EADImport\Form;
 
 use Laminas\Form\Form;
 use Laminas\Form\Element\Radio;
+use Laminas\Validator\File\MimeType;
 use Omeka\Form\Element\SiteSelect;
 
 class LoadForm extends Form
@@ -31,6 +32,7 @@ class LoadForm extends Form
             ],
             'attributes' => [
                 'required' => true,
+                'accept' => '.xml,text/xml',
             ],
         ]);
         $this->add([
@@ -60,5 +62,23 @@ class LoadForm extends Form
                 'required' => true,
             ],
         ]);
+
+        $inputFilter = $this->getInputFilter();
+        $inputFilter->add([
+            'name' => 'source',
+            'required' => true,
+            'validators' => [
+                [
+                    'name' => MimeType::class,
+                    'options' => [
+                        'mimeType' => ['text/xml', 'application/xml', 'text/plain'],
+                        'messages' => [
+                            MimeType::FALSE_TYPE => 'File type must be XML', // @translate
+                        ],
+                    ],
+                ],
+            ],
+        ]);
+
     }
 }
