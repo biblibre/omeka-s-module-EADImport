@@ -63,7 +63,12 @@ class MappingModelController extends AbstractActionController
         $mappingModel = $response->getContent();
 
         $view = new ViewModel;
-        $form = $this->getForm(MappingModelEditForm::class, ['mappingModel' => $mappingModel]);
+        $form = $this->getForm(MappingModelEditForm::class);
+        $form->setAttribute('action', $mappingModel->url('edit'));
+        $form->setData([
+            'model_name' => $mappingModel->name(),
+        ]);
+
         $view->setVariable('form', $form);
         $view->setTerminal(true);
         $view->setTemplate('ead-import/admin/mapping-model/edit');
@@ -97,7 +102,11 @@ class MappingModelController extends AbstractActionController
         $importName = $this->getRequest()->getQuery('import_name');
         $importMapping = $this->getRequest()->getQuery('import_mapping');
 
-        $form = $this->getForm(MappingModelSaverForm::class, ['import_name' => $importName, 'import_mapping' => $importMapping]);
+        $form = $this->getForm(MappingModelSaverForm::class);
+        $form->setData([
+            'model_name' => $importName,
+            'mapping' => $importMapping,
+        ]);
         $view->setVariable('form', $form);
         $view->setTerminal(true);
         $view->setTemplate('ead-import/admin/mapping-model/save');

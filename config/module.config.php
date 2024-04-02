@@ -36,11 +36,11 @@ return [
         ],
     ],
     'form_elements' => [
-        'factories' => [
-            'EADImport\Form\LoadForm' => Service\Form\LoadFormFactory::class,
-            'EADImport\Form\MappingForm' => Service\Form\MappingFormFactory::class,
-            'EADImport\Form\MappingModelSaverForm' => Service\Form\MappingModelSaverFormFactory::class,
-            'EADImport\Form\MappingModelEditForm' => Service\Form\MappingModelEditFormFactory::class,
+        'invokables' => [
+            'EADImport\Form\LoadForm' => Form\LoadForm::class,
+            'EADImport\Form\MappingForm' => Form\MappingForm::class,
+            'EADImport\Form\MappingModelSaverForm' => Form\MappingModelSaverForm::class,
+            'EADImport\Form\MappingModelEditForm' => Form\MappingModelEditForm::class,
         ],
     ],
     'navigation' => [

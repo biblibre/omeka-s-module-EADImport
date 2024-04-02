@@ -8,8 +8,6 @@ class MappingModelSaverForm extends Form
 {
     public function init()
     {
-        $importName = $this->getOption('import_name');
-        $importMapping = $this->getOption('import_mapping');
         $this->setAttribute('action', 'mapping-model/save');
 
         $this->add([
@@ -20,7 +18,6 @@ class MappingModelSaverForm extends Form
             ],
             'attributes' => [
                 'required' => true,
-                'value' => $importName,
             ],
         ]);
 
@@ -29,7 +26,6 @@ class MappingModelSaverForm extends Form
             'type' => 'hidden',
             'attributes' => [
                 'required' => true,
-                'value' => $importMapping,
             ],
         ]);
     }

@@ -8,9 +8,6 @@ class MappingModelEditForm extends Form
 {
     public function init()
     {
-        $mappingModel = $this->getOption('mappingModel');
-        $this->setAttribute('action', $mappingModel->url('edit'));
-
         $this->add([
             'name' => 'model_name',
             'type' => 'text',
@@ -19,7 +16,6 @@ class MappingModelEditForm extends Form
             ],
             'attributes' => [
                 'required' => true,
-                'value' => $mappingModel->name(),
             ],
         ]);
     }
