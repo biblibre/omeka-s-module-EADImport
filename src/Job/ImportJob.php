@@ -49,19 +49,18 @@ class ImportJob extends AbstractJob
         if (!$migrationItemSet) {
             $this->createItemSet(self::MIGRATION_IDENTIFIER, 'EAD Imports');
         }
+        $doc = new \DOMDocument();
+        $doc->load($xmlFile);
         foreach ($levelMapping as $nodeName => $apiResourceType) {
             if (in_array($apiResourceType, $authorizedApiAdapters)) {
                 $this->logger->info(sprintf('Import %s from level "%s" nodes', $apiResourceType, $nodeName));
-                $this->processMapping($apiResourceType, $xmlFile, $nodeName, $nodesMapping[$nodeName]);
+                $this->processMapping($apiResourceType, $doc, $nodeName, $nodesMapping[$nodeName]);
             }
         }
     }
 
-    protected function processMapping($apiResourceType, $xmlFile, $nodeName, $nodeMapping)
+    protected function processMapping($apiResourceType, $doc, $nodeName, $nodeMapping)
     {
-        $doc = new \DOMDocument();
-        $doc->load($xmlFile);
-
         $hasPartId = array_search('dcterms:hasPart', $this->propertiesMap);
         $isPartOfId = array_search('dcterms:isPartOf', $this->propertiesMap);
 
@@ -206,14 +205,15 @@ class ImportJob extends AbstractJob
 
     protected function appendIdOnChilds($node, $omekaId)
     {
-        $childs = $node->childNodes;
         $hasTargetChild = false;
+        $childs = $node->getElementsByTagName('c');
         foreach ($childs as $child) {
-            if ($child->nodeName === 'c') {
+            if ($child->hasAttribute('level')) {
                 $child->setAttribute('omeka_parent_id', $omekaId);
                 $hasTargetChild = true;
             }
         }
+
         return $hasTargetChild;
     }
 
@@ -272,10 +272,6 @@ class ImportJob extends AbstractJob
         $this->siteId = $siteId;
 
         return $this;
-    }
-
-    protected function addParentValue($node, $xpath, $value)
-    {
     }
 
     protected function getAncestors($itemNode)
