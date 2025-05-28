@@ -79,6 +79,5 @@ class LoadForm extends Form
                 ],
             ],
         ]);
-
     }
 }
