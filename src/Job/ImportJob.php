@@ -88,6 +88,13 @@ class ImportJob extends AbstractJob
             }
 
             $resource = $this->api->create($apiResourceType, $itemData)->getContent();
+            $eadResourceJson = [
+                'o:job' => ['o:id' => $this->job->getId()],
+                'o:site' => ['o:id' => $this->getSiteId()],
+                'resource_type' => $resource->resourceName(),
+                'entity_id' => $resource->id(),
+            ];
+            $this->api->create('eadimport_entities', $eadResourceJson);
             $this->logger->info('Created resource ' . $resource->id());
 
             $isItemSetImportDirectChild = $itemNode->hasAttribute('root_item_set_id');
@@ -138,10 +145,11 @@ class ImportJob extends AbstractJob
                         'type' => 'resource',
                         'value_resource_id' => $parentId,
                     ];
-                        $this->api->update($apiResourceType, $childId, $childData, [], ['isPartial' => true, 'collectionAction' => 'append']);
+                        $eadChildRepresentation = $this->api->search('eadimport_entities', ['entity_id' => $childId])->getContent()[0];
+                        $this->api->update($eadChildRepresentation->resourceType(), $childId, $childData, [], ['isPartial' => true, 'collectionAction' => 'append']);
                     }
-
-                    $this->api->update($apiResourceType, $parentId, $parentData, [], ['isPartial' => true, 'collectionAction' => 'append']);
+                    $eadParentRepresentation = $this->api->search('eadimport_entities', ['entity_id' => $parentId])->getContent()[0];
+                    $this->api->update($eadParentRepresentation->resourceType(), $parentId, $parentData, [], ['isPartial' => true, 'collectionAction' => 'append']);
                 }
             }
         }
