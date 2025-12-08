@@ -40,10 +40,6 @@ class ImportAdapter extends AbstractEntityAdapter
             $entity->setSite($site);
         }
 
-        if (isset($data['resource_type'])) {
-            $entity->setResourceType($data['resource_type']);
-        }
-
         if (isset($data['name'])) {
             $entity->setName($data['name']);
         }
@@ -66,13 +62,6 @@ class ImportAdapter extends AbstractEntityAdapter
             $qb->andWhere($qb->expr()->eq(
                 'omeka_root.site',
                 $this->createNamedParameter($qb, $query['site_id']))
-            );
-        }
-
-        if (isset($query['resource_type'])) {
-            $qb->andWhere($qb->expr()->eq(
-                'omeka_root.resource_type',
-                $this->createNamedParameter($qb, $query['resource_type']))
             );
         }
     }

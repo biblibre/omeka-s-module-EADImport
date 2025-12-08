@@ -29,15 +29,6 @@ class ImportJob extends AbstractJob
         $nodesMapping = $args['nodes_mapping'];
         $this->setNodesMapping($nodesMapping);
         $authorizedApiAdapters = ['item_sets', 'items'];
-        $eadImportJson = [
-            'o:job' => ['o:id' => $this->job->getId()],
-            'resource_type' => 'items',
-            'name' => $importName,
-            'mapping' => json_encode($nodesMapping),
-            'o:site' => ['o:id' => $this->getSiteId()],
-        ];
-
-        $this->api->create('eadimport_imports', $eadImportJson);
 
         $this->propertiesMap = [];
         $properties = $this->api->search('properties')->getContent();
@@ -57,6 +48,14 @@ class ImportJob extends AbstractJob
                 $this->processMapping($apiResourceType, $doc, $nodeName, $nodesMapping[$nodeName]);
             }
         }
+        $eadImportJson = [
+            'o:job' => ['o:id' => $this->job->getId()],
+            'name' => $importName,
+            'mapping' => json_encode($nodesMapping),
+            'o:site' => ['o:id' => $this->getSiteId()],
+        ];
+
+        $this->api->create('eadimport_imports', $eadImportJson);
     }
 
     protected function processMapping($apiResourceType, $doc, $nodeName, $nodeMapping)

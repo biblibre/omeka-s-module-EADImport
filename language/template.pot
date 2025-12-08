@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-06 08:49+0000\n"
+"POT-Creation-Date: 2025-12-08 14:31+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -77,7 +77,11 @@ msgstr ""
 msgid "Past imports"
 msgstr ""
 
-#: view/ead-import/admin/index/past-imports.phtml:59
+#: view/ead-import/admin/index/past-imports.phtml:22
+msgid "Resources type"
+msgstr ""
+
+#: view/ead-import/admin/index/past-imports.phtml:68
 msgid "Job details"
 msgstr ""
 
@@ -141,51 +145,55 @@ msgstr ""
 msgid "Mapping must exists."
 msgstr ""
 
-#: src/Form/MappingModelSaverForm.php:19 src/Form/MappingModelEditForm.php:18
-msgid "Mapping model name"
-msgstr ""
-
-#: src/Form/LoadForm.php:19
-msgid "Import name"
-msgstr ""
-
-#: src/Form/LoadForm.php:30
-msgid "File path"
-msgstr ""
-
-#: src/Form/LoadForm.php:40
-msgid "Check structure with schema"
-msgstr ""
-
-#: src/Form/LoadForm.php:41
-msgid "Validation with XSD formatted schema"
-msgstr ""
-
-#: src/Controller/Admin/IndexController.php:82
+#: src/Controller/Admin/IndexController.php:76
 msgid "/"
 msgstr ""
 
-#: src/Controller/Admin/IndexController.php:113
+#: src/Controller/Admin/IndexController.php:107
 #, php-format
 msgid "Importing in background (%sjob #%d%s)"
 msgstr ""
 
-#: src/Controller/Admin/MappingModelController.php:80
+#: src/Controller/Admin/MappingModelController.php:85
 msgid "Mapping model successfully updated"
 msgstr ""
 
-#: src/Controller/Admin/MappingModelController.php:115
+#: src/Controller/Admin/MappingModelController.php:124
 msgid "Mapping model successfully added"
 msgstr ""
 
-#: src/Controller/Admin/MappingModelController.php:123
+#: src/Controller/Admin/MappingModelController.php:132
 msgid "Name or mapping is empty"
 msgstr ""
 
-#: src/Controller/Admin/MappingModelController.php:146
+#: src/Controller/Admin/MappingModelController.php:155
 msgid "mapping model"
 msgstr ""
 
-#: src/Controller/Admin/MappingModelController.php:159
+#: src/Controller/Admin/MappingModelController.php:168
 msgid "Mapping model successfully deleted"
+msgstr ""
+
+#: src/Form/MappingModelEditForm.php:15 src/Form/MappingModelSaverForm.php:17
+msgid "Mapping model name"
+msgstr ""
+
+#: src/Form/LoadForm.php:20
+msgid "Import name"
+msgstr ""
+
+#: src/Form/LoadForm.php:31
+msgid "File path"
+msgstr ""
+
+#: src/Form/LoadForm.php:42
+msgid "Check structure with schema"
+msgstr ""
+
+#: src/Form/LoadForm.php:43
+msgid "Validation with XSD formatted schema"
+msgstr ""
+
+#: src/Form/LoadForm.php:76
+msgid "File type must be XML"
 msgstr ""

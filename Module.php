@@ -31,6 +31,7 @@ namespace EADImport;
 
 use Omeka\Module\AbstractModule;
 use Laminas\ServiceManager\ServiceLocatorInterface;
+use Composer\Semver\Comparator;
 
 class Module extends AbstractModule
 {
@@ -43,7 +44,7 @@ class Module extends AbstractModule
     {
         $connection = $serviceLocator->get('Omeka\Connection');
         $sql = <<<'SQL'
-        CREATE TABLE eadimport_import (id INT AUTO_INCREMENT NOT NULL, job_id INT NOT NULL, site_id INT NOT NULL, name VARCHAR(255) NOT NULL, resource_type VARCHAR(255) NOT NULL, mapping LONGTEXT NOT NULL COMMENT '(DC2Type:json)', UNIQUE INDEX UNIQ_2F1CB77ABE04EA9 (job_id), INDEX IDX_2F1CB77AF6BD1646 (site_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB;
+        CREATE TABLE eadimport_import (id INT AUTO_INCREMENT NOT NULL, job_id INT NOT NULL, site_id INT NOT NULL, name VARCHAR(255) NOT NULL, mapping LONGTEXT NOT NULL COMMENT '(DC2Type:json)', UNIQUE INDEX UNIQ_2F1CB77ABE04EA9 (job_id), INDEX IDX_2F1CB77AF6BD1646 (site_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB;
         CREATE TABLE eadimport_mapping_model (id INT AUTO_INCREMENT NOT NULL, name VARCHAR(255) NOT NULL, created DATETIME NOT NULL, mapping LONGTEXT NOT NULL COMMENT '(DC2Type:json)', PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB;
         CREATE TABLE eadimport_entity (id INT AUTO_INCREMENT NOT NULL, job_id INT NOT NULL, site_id INT NOT NULL, entity_id INT NOT NULL, resource_type VARCHAR(255) NOT NULL, INDEX IDX_BC7A3D0FBE04EA9 (job_id), INDEX IDX_BC7A3D0FF6BD1646 (site_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB;
         ALTER TABLE eadimport_import ADD CONSTRAINT FK_2F1CB77ABE04EA9 FOREIGN KEY (job_id) REFERENCES job (id);
@@ -76,6 +77,18 @@ class Module extends AbstractModule
         $sqls = array_filter(array_map('trim', explode(';', $sql)));
         foreach ($sqls as $sql) {
             $connection->exec($sql);
+        }
+    }
+
+    public function upgrade(
+        $oldVersion,
+        $newVersion,
+        ServiceLocatorInterface $serviceLocator
+    ) {
+        $connection = $serviceLocator->get('Omeka\Connection');
+        if (Comparator::lessThan($oldVersion, '2.0.0')) {
+            $connection = $serviceLocator->get('Omeka\Connection');
+            $connection->exec("ALTER TABLE eadimport_import DROP COLUMN IF EXISTS resource_type");
         }
     }
 }

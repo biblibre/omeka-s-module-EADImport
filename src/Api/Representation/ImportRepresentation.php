@@ -1,4 +1,5 @@
 <?php
+
 namespace EADImport\Api\Representation;
 
 use Omeka\Api\Representation\AbstractEntityRepresentation;
@@ -15,7 +16,6 @@ class ImportRepresentation extends AbstractEntityRepresentation
         return [
             'o:job' => $this->job()->getReference(),
             'o:sites' => $this->site()->getReference(),
-            'resource_type' => $this->resourceType(),
             'name' => $this->name(),
             'mapping' => $this->mapping(),
         ];
@@ -38,9 +38,13 @@ class ImportRepresentation extends AbstractEntityRepresentation
             ->getRepresentation($this->resource->getSite());
     }
 
-    public function resourceType()
+    public function resourcesCount($jobId)
     {
-        return $this->resource->getResourceType();
+        $entityAdapter = $this->getAdapter('eadimport_entities');
+
+        $counts = $entityAdapter->countByResourceType($jobId);
+
+        return $counts;
     }
 
     public function name()

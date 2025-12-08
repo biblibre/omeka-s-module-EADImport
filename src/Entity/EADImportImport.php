@@ -35,11 +35,6 @@ class EADImportImport extends AbstractEntity
     protected $name;
 
     /**
-     * @Column(type="string")
-     */
-    protected $resource_type;
-
-    /**
      * @Column(type="json")
      * @JoinColumn(nullable=false)
      */
@@ -68,16 +63,6 @@ class EADImportImport extends AbstractEntity
     public function getSite()
     {
         return $this->site;
-    }
-
-    public function setResourceType($resourceType)
-    {
-        $this->resource_type = $resourceType;
-    }
-
-    public function getResourceType()
-    {
-        return $this->resource_type;
     }
 
     public function getName()

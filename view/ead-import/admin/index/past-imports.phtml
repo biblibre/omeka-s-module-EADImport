@@ -19,7 +19,7 @@ $this->headLink()->appendStylesheet($this->assetUrl('css/eadimport.css', 'EADImp
                 </th>
                 <th><?php echo $escape($translate('Name'));?></th>
                 <th><?php echo $escape($translate('Site'));?></th>
-                <th><?php echo $escape($translate('Resource'));?></th>
+                <th><?php echo $escape($translate('Resources type'));?></th>
                 <th><?php echo $escape($translate('Status'));?></th>
                 <th><?php echo $escape($translate('Owner'));?></th>
                 <th><?php echo $escape($translate('Save'));?></th>
@@ -30,7 +30,7 @@ $this->headLink()->appendStylesheet($this->assetUrl('css/eadimport.css', 'EADImp
                 <form method='POST'>
 
                     <?php $job = $import->job(); ?>
-                    <?php $resourceType = $import->resourceType(); ?>
+                    <?php $resourcesCount = $import->resourcesCount($job->id()); ?>
                     <?php $site = $import->site(); ?>
                     <?php $jobArgs = $job->args(); ?>
                     <?php $importName = $jobArgs['importName']; ?>
@@ -49,7 +49,16 @@ $this->headLink()->appendStylesheet($this->assetUrl('css/eadimport.css', 'EADImp
                             <?php echo $site->slug();?>
                         </td>
                         <td>
-                            <?php echo $escape($translate($resourceType));?>
+                            <?php if (!empty($resourcesCount)) : ?>
+                                <?php foreach ($resourcesCount as $typeIcon => $count) : ?>
+                                    <p>
+                                        <i class="<?php echo $typeIcon?>"></i>
+                                        <?php echo $escape('' . $count); ?>
+                                    </p>
+                                <?php endforeach; ?>
+                            <?php else : ?>
+                                <p><?php echo $translate('None');?></p>
+                            <?php endif; ?>
                         </td>
                         <td>
                             <div>

@@ -1,4 +1,5 @@
 <?php
+
 namespace EADImport\Api\Adapter;
 
 use Doctrine\ORM\QueryBuilder;
@@ -29,32 +30,42 @@ class EntityAdapter extends AbstractEntityAdapter
     public function buildQuery(QueryBuilder $qb, array $query)
     {
         if (isset($query['job_id'])) {
-            $qb->andWhere($qb->expr()->eq(
-                'omeka_root.job',
-                $this->createNamedParameter($qb, $query['job_id']))
+            $qb->andWhere(
+                $qb->expr()->eq(
+                    'omeka_root.job',
+                    $this->createNamedParameter($qb, $query['job_id'])
+                )
             );
         }
         if (isset($query['site_id'])) {
-            $qb->andWhere($qb->expr()->eq(
-                'omeka_root.site',
-                $this->createNamedParameter($qb, $query['site_id']))
+            $qb->andWhere(
+                $qb->expr()->eq(
+                    'omeka_root.site',
+                    $this->createNamedParameter($qb, $query['site_id'])
+                )
             );
         }
         if (isset($query['entity_id'])) {
-            $qb->andWhere($qb->expr()->eq(
-                'omeka_root.entity_id',
-                $this->createNamedParameter($qb, $query['entity_id']))
+            $qb->andWhere(
+                $qb->expr()->eq(
+                    'omeka_root.entity_id',
+                    $this->createNamedParameter($qb, $query['entity_id'])
+                )
             );
         }
         if (isset($query['resource_type'])) {
-            $qb->andWhere($qb->expr()->eq(
-                'omeka_root.resource_type',
-                $this->createNamedParameter($qb, $query['resource_type']))
+            $qb->andWhere(
+                $qb->expr()->eq(
+                    'omeka_root.resource_type',
+                    $this->createNamedParameter($qb, $query['resource_type'])
+                )
             );
         }
     }
 
-    public function hydrate(Request $request, EntityInterface $entity,
+    public function hydrate(
+        Request $request,
+        EntityInterface $entity,
         ErrorStore $errorStore
     ) {
         $data = $request->getContent();
@@ -75,5 +86,27 @@ class EntityAdapter extends AbstractEntityAdapter
         if (isset($data['resource_type'])) {
             $entity->setResourceType($data['resource_type']);
         }
+    }
+
+    public function countByResourceType($jobId)
+    {
+        $qb = $this->getEntityManager()->createQueryBuilder();
+
+        $qb->select('entity.resource_type, COUNT(entity.id) as count')
+            ->from($this->getEntityClass(), 'entity')
+            ->where('entity.job = :jobId')
+            ->setParameter('jobId', $jobId)
+            ->groupBy('entity.resource_type');
+
+        $results = $qb->getQuery()->getResult();
+
+        $counts = [];
+        foreach ($results as $result) {
+            $type = str_replace('_','-', $result['resource_type']);
+            $typeIcon = "o-icon-$type";
+            $counts[$typeIcon] = (int) $result['count'];
+        }
+
+        return $counts;
     }
 }
