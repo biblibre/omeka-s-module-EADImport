@@ -32,7 +32,7 @@ Once the import is complete, you can save a mapping so that you can reapply it w
 
 ## How to contribute
 
-You can contribute to this module by adding issues directly [here](https://github.com/biblibre/omeka-s-module-MarcXmlExport/issues).
+You can contribute to this module by adding issues directly [here](https://github.com/biblibre/omeka-s-module-EADImport/issues).
 
 ## Contributors / Sponsors
 
@@ -44,6 +44,6 @@ EADImport was sponsored by:
 
 ## Licence
 
-MarcXmlExport is distributed under the GNU General Public License, version 3. The full text of this license is given in the LICENSE file.
+EADImport is distributed under the GNU General Public License, version 3. The full text of this license is given in the LICENSE file.
 
 Created by [BibLibre](https://www.biblibre.com).
