@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.0.1] - 2026-08-20
+
+- Add warning message if file has no <c> element with a 'level' attribute
+
 ## [2.0.0] - 2025-12-08
 
 - Fix behavior when many different resource types will be imported.
