@@ -80,6 +80,11 @@ class IndexController extends AbstractActionController
 
         $nodeList = $this->getNodeList($xmlFilePath);
 
+        if (empty($nodeList['nodes_paths'])) {
+            $this->messenger()->addError('No importable elements found: this EAD file has no <c> element with a "level" attribute.'); // @translate
+            return $this->redirect()->toRoute('admin/eadimport');
+        }
+
         $view->setVariable('form', $importForm);
         $view->setVariable('nodeList', $nodeList);
         $view->setVariable('xmlFilePath', $xmlFilePath);
